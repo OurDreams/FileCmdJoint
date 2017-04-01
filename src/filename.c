@@ -343,10 +343,10 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
         p->meter_ver = (uint16)uui.meter_ver;
     }
 
-    if (strlen(uui.oem) && (strlen(uui.oem) != 5))
+    if (strlen(uui.oem)!=0 && (strlen(uui.oem) != 4))
     {
         printf("输入的OEM信息(%s)不正确!（4字节，首字母表示,如上海联能SHLN,可不填）\n",
-                uui.ker_ver);
+                uui.oem);
         ret = ERROR;
     }
     else

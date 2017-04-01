@@ -1,0 +1,1 @@
+{"configurations":[{"name":"Mac","includePath":["/usr/include"]},{"name":"Linux","includePath":["/usr/include"]},{"name":"Win32","includePath":["C:/MinGW/x86_64-w64-mingw32/include","C:/MinGW/x86_64-w64-mingw32/include/sys"]}],"clang_format":{"style":"file","fallback-style":"WebKit","sort-includes":true}}
