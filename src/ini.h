@@ -47,17 +47,19 @@ typedef struct
 
 typedef struct
 {
-    char show_ver[6];   /**< æ˜¾ç¤ºç‰ˆæœ¬ */
-    char bsp_ver[8];    /**< bspç‰ˆæœ¬ */
-    char ker_ver[6];    /**< å†…æ ¸ç‰ˆæœ¬ï¼ˆASCIIç ï¼Œ5å­—èŠ‚ï¼‰ */
-    int meter_ver;      /**< è®¡é‡åº“ç‰ˆæœ¬ï¼ˆ2å­—èŠ‚ï¼‰ */
-    char oem[5];        /**< OEMä¿¡æ¯ï¼ˆ4å­—èŠ‚ï¼Œé¦–å­—æ¯è¡¨ç¤º,å¦‚ä¸Šæµ·è”èƒ½SHLNï¼‰ */
+    /* cmd ini */
+    char show_ver[6];   /**< ÏÔÊ¾°æ±¾ */
+    char bsp_ver[8];    /**< bsp°æ±¾ */
+    char ker_ver[6];    /**< ÄÚºË°æ±¾£¨ASCIIÂë£¬5×Ö½Ú£© */
+    int meter_ver;      /**< ¼ÆÁ¿¿â°æ±¾£¨2×Ö½Ú£© */
+    char oem[5];        /**< OEMÐÅÏ¢£¨4×Ö½Ú£¬Ê××ÖÄ¸±íÊ¾,ÈçÉÏº£ÁªÄÜSHLN£© */
 
+    /* joint ini */
     int files;
     int blank;
     char outfile[MAX_FILE_NAME_LEN];
     file_t file[DEFAULT_MAX_FILE];
-} usb_update_ini_t;
+} cmd_joint_ini_t;
 
 /*-----------------------------------------------------------------------------
  Section: Globals
@@ -68,7 +70,7 @@ typedef struct
  Section: Function Prototypes
  ----------------------------------------------------------------------------*/
 extern int
-ini_get_info(usb_update_ini_t *pinfo);
+ini_get_info(cmd_joint_ini_t *pinfo);
 
 #ifdef __cplusplus      /* Maintain C++ compatibility */
 }

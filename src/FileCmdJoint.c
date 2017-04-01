@@ -25,46 +25,46 @@
 #define BUF_SIZE            (1024)
 
 #pragma pack(push, 1)
-/** å‡çº§æ–‡ä»¶ä¿¡æ¯ */
+/** Éı¼¶ÎÄ¼şĞÅÏ¢ */
 typedef struct
 {
-    uint8 file_type;  /**< å‡çº§æ–‡ä»¶ç±»å‹ */
-    int8 file_name[24];     /**< æ–‡ä»¶å */
-    uint32 dest_addr;       /**< ç›®æ ‡åœ°å€ */
-    uint32 zip_len;         /**< åœ¨å‘½ä»¤åŒ…ä¸­çš„é•¿åº¦ï¼ˆå‹ç¼©åï¼‰ */
-    uint32 raw_len;         /**< åŸå§‹é•¿åº¦ï¼ˆå‹ç¼©å‰ï¼‰ */
-    uint8 md5[16];          /**< åŸå§‹æ–‡ä»¶md5å€¼ï¼ˆå‹ç¼©å‰ï¼‰ */
+    uint8 file_type;  /**< Éı¼¶ÎÄ¼şÀàĞÍ */
+    int8 file_name[24];     /**< ÎÄ¼şÃû */
+    uint32 dest_addr;       /**< Ä¿±êµØÖ· */
+    uint32 zip_len;         /**< ÔÚÃüÁî°üÖĞµÄ³¤¶È£¨Ñ¹Ëõºó£© */
+    uint32 raw_len;         /**< Ô­Ê¼³¤¶È£¨Ñ¹ËõÇ°£© */
+    uint8 md5[16];          /**< Ô­Ê¼ÎÄ¼şmd5Öµ£¨Ñ¹ËõÇ°£© */
 } file_info_t;
 
 typedef struct
 {
-    uint32 magic;       /**< é­”æœ¯å­—:0xa1b2c3d4è¡¨ç¤ºuç›˜å‡çº§ */
-    char_t show_ver[4]; /**< æ˜¾ç¤ºç‰ˆæœ¬ */
-    char_t bsp_ver[4];  /**< bspç‰ˆæœ¬ */
+    uint32 magic;       /**< Ä§Êõ×Ö:0xa1b2c3d4±íÊ¾uÅÌÉı¼¶ */
+    char_t show_ver[4]; /**< ÏÔÊ¾°æ±¾ */
+    char_t bsp_ver[4];  /**< bsp°æ±¾ */
     union
     {
         struct
         {
-            char_t ker_ver[5];  /**< å†…æ ¸ç‰ˆæœ¬ï¼ˆASCIIç ï¼Œ5å­—èŠ‚ï¼‰ */
-            char_t meter_ver[2];/**< è®¡é‡åº“ç‰ˆæœ¬ï¼ˆ2å­—èŠ‚ï¼‰ */
-            char_t oem[4];      /**< OEMä¿¡æ¯ï¼ˆ4å­—èŠ‚ï¼Œé¦–å­—æ¯è¡¨ç¤º,å¦‚ä¸Šæµ·è”èƒ½SHLNï¼‰ */
+            char_t ker_ver[5];  /**< ÄÚºË°æ±¾£¨ASCIIÂë£¬5×Ö½Ú£© */
+            char_t meter_ver[2];/**< ¼ÆÁ¿¿â°æ±¾£¨2×Ö½Ú£© */
+            char_t oem[4];      /**< OEMĞÅÏ¢£¨4×Ö½Ú£¬Ê××ÖÄ¸±íÊ¾,ÈçÉÏº£ÁªÄÜSHLN£© */
         };
-        char_t t_info[11];      /**< ç»ˆç«¯ä¿¡æ¯ç  */
+        char_t t_info[11];      /**< ÖÕ¶ËĞÅÏ¢Âë */
     };
-    uint8 cs;           /**< å¯¹ä¸Šè¿°æ•°æ®è¿›è¡Œç´¯åŠ æ±‚å’Œ */
+    uint8 cs;           /**< ¶ÔÉÏÊöÊı¾İ½øĞĞÀÛ¼ÓÇóºÍ */
 } usb_update_info_t;
 
-/** å‡çº§å‘½ä»¤ */
+/** Éı¼¶ÃüÁî */
 typedef struct
 {
-    uint16 crc;             /**< CRCæ£€éªŒ */
-    uint32 len;             /**< é•¿åº¦ï¼Œä¸åŒ…æ‹¬crcã€len */
-    uint8 id[16];           /**< å‘½ä»¤æ ‡è¯† */
-    uint8 is_zip;          /**< æ˜¯å¦å‹ç¼© */
-    uint8 is_reboot;       /**< æ˜¯å¦éœ€è¦é‡å¯ */
-    uint8 dummy;            /**< å¤‡ç”¨ */
-    uint8 file_count;       /**< æ–‡ä»¶æ•°é‡ */
-    file_info_t file_info;  /**< æ–‡ä»¶ä¿¡æ¯ */
+    uint16 crc;             /**< CRC¼ìÑé */
+    uint32 len;             /**< ³¤¶È£¬²»°üÀ¨crc¡¢len */
+    uint8 id[16];           /**< ÃüÁî±êÊ¶ */
+    uint8 is_zip;          /**< ÊÇ·ñÑ¹Ëõ */
+    uint8 is_reboot;       /**< ÊÇ·ñĞèÒªÖØÆô */
+    uint8 dummy;            /**< ±¸ÓÃ */
+    uint8 file_count;       /**< ÎÄ¼şÊıÁ¿ */
+    file_info_t file_info;  /**< ÎÄ¼şĞÅÏ¢ */
 } update_cmd_t;
 #pragma pack(pop)
 
@@ -74,10 +74,10 @@ get_update_info_24bytes(char *pinfo, char *pfilename);
 
 /**
  ******************************************************************************
- * @brief      CRCæ ¡éªŒè®¡ç®—
- * @param[in]  int8 * ptr: æ ¡éªŒå†…å®¹èµ·å§‹åœ°å€
- * @param[in]  uint16 count: æ ¡éªŒå†…å®¹é•¿åº¦
- * @retval     uint16: CRCæ ¡éªŒç»“æœ
+ * @brief      CRCĞ£Ñé¼ÆËã
+ * @param[in]  int8 * ptr: Ğ£ÑéÄÚÈİÆğÊ¼µØÖ·
+ * @param[in]  uint16 count: Ğ£ÑéÄÚÈİ³¤¶È
+ * @retval     uint16: CRCĞ£Ñé½á¹û
  ******************************************************************************
  */
 uint16
@@ -108,13 +108,13 @@ get_crc16(const int8 * pdata, uint16 count, uint16 crc)
 
 /**
  ******************************************************************************
- * @brief   æ£€æµ‹å†…å­˜å—ä¸­æ˜¯å¦å­˜åœ¨å­—ç¬¦ä¸²
- * @param[in]  *paddr: å†…å­˜èµ·å§‹åœ°å€
- * @param[in]  len   : å†…å­˜é•¿åº¦
- * @param[in]  *pecho: å¾…æŸ¥æ‰¾çš„å­—ç¬¦ä¸²
+ * @brief   ¼ì²âÄÚ´æ¿éÖĞÊÇ·ñ´æÔÚ×Ö·û´®
+ * @param[in]  *paddr: ÄÚ´æÆğÊ¼µØÖ·
+ * @param[in]  len   : ÄÚ´æ³¤¶È
+ * @param[in]  *pecho: ´ı²éÕÒµÄ×Ö·û´®
  *
- * @retval  NULL : æœªæ‰¾åˆ°
- * @retval !NULL : é¦–åœ°å€
+ * @retval  NULL : Î´ÕÒµ½
+ * @retval !NULL : Ê×µØÖ·
  ******************************************************************************
  */
 const char *
@@ -144,13 +144,13 @@ memstr(const void *paddr,
 
 /**
  ******************************************************************************
- * @brief   æ£€æµ‹å†…å­˜å—ä¸­æ˜¯å¦å­˜åœ¨å­—ç¬¦ä¸²
- * @param[in]  *paddr: å†…å­˜èµ·å§‹åœ°å€
- * @param[in]  len   : å†…å­˜é•¿åº¦
- * @param[in]  *pecho: å¾…æŸ¥æ‰¾çš„å­—ç¬¦ä¸²
+ * @brief   ¼ì²âÄÚ´æ¿éÖĞÊÇ·ñ´æÔÚ×Ö·û´®
+ * @param[in]  *paddr: ÄÚ´æÆğÊ¼µØÖ·
+ * @param[in]  len   : ÄÚ´æ³¤¶È
+ * @param[in]  *pecho: ´ı²éÕÒµÄ×Ö·û´®
  *
- * @retval  NULL : æœªæ‰¾åˆ°
- * @retval !NULL : é¦–åœ°å€
+ * @retval  NULL : Î´ÕÒµ½
+ * @retval !NULL : Ê×µØÖ·
  ******************************************************************************
  */
 const char *
@@ -180,8 +180,8 @@ memstr_back(const void *paddr,
 
 /**
  ******************************************************************************
- * @brief      binæ–‡ä»¶æ·»åŠ ä¿¡æ¯åˆ°æœ«å°¾
- * @retval     0ï¼šæˆåŠŸ
+ * @brief      binÎÄ¼şÌí¼ÓĞÅÏ¢µ½Ä©Î²
+ * @retval     0£º³É¹¦
  ******************************************************************************
  */
 int modify_bin_file(void)
@@ -190,16 +190,16 @@ int modify_bin_file(void)
     FILE* info_file = fopen(INFO_FILE, "rb");
     if (bin_file == NULL)
     {
-        printf("æ‰¾ä¸åˆ°rtos.bin\n");
+        printf("ÕÒ²»µ½rtos.bin\n");
         goto __return_err;
     }
     if (info_file == NULL)
     {
-        printf("æ‰¾ä¸åˆ°README.txt\n");
+        printf("ÕÒ²»µ½README.txt\n");
         goto __return_err;
     }
 
-    usb_update_ini_t fji;
+    cmd_joint_ini_t fji;
     if (0 != ini_get_info(&fji))
     {
         printf("ini get info err!\n");
@@ -229,11 +229,10 @@ int modify_bin_file(void)
     fseek(info_file, 0, SEEK_END);
     int info_file_size = ftell(info_file);
     int max_write_size = fji.file[1].filemaxsize - bin_file_size;
-    printf("max_write_size :%d, fji.file[1].filemaxsize:%d, bin_file_size:%d\n"
-            , max_write_size, fji.file[1].filemaxsize, bin_file_size);
     if (max_write_size < 0)
     {
-        printf("max write size error\n");
+        printf("max_write_size error:%d, fji.file[1].filemaxsize:%d, bin_file_size:%d\n"
+                , max_write_size, fji.file[1].filemaxsize, bin_file_size);
         goto __return_err;
     }
     if (info_file_size > BUF_SIZE - 1)
@@ -250,24 +249,24 @@ int modify_bin_file(void)
     int w_len = fwrite(buf, 1, len, bin_file);
     if (len != w_len)
     {
-        printf("å†™æ–‡ä»¶å‡ºé”™!len:%d, wlen:%d\n", len, w_len);
+        printf("Ğ´ÎÄ¼ş³ö´í!len:%d, wlen:%d\n", len, w_len);
         goto __return_err;
     }
 
     if (bin_file)fclose(bin_file);
     if (info_file)fclose(info_file);
-    return 0;
+    return OK;
 
 __return_err:
     if (bin_file)fclose(bin_file);
     if (info_file)fclose(info_file);
-    return -1;
+    return ERROR;
 }
 
 /**
  ******************************************************************************
- * @brief      ç”Ÿæˆå‡çº§æ–‡ä»¶
- * @retval     0ï¼šæˆåŠŸ
+ * @brief      Éú³ÉÉı¼¶ÎÄ¼ş
+ * @retval     0£º³É¹¦
  ******************************************************************************
  */
 int create_updt_file(void)
@@ -284,13 +283,13 @@ int create_updt_file(void)
     char dstfilename[32];
 
     FILE* fpdst = NULL;
-    FILE* fpsrc = NULL;    //ç›®æ ‡æ–‡ä»¶ /Debug/rtos.bin
+    FILE* fpsrc = NULL;    //Ä¿±êÎÄ¼ş /Debug/rtos.bin
 
-    //1. ä»é…ç½®æ–‡ä»¶è·å¾—fileinfoå’Œdstfilename
+    //1. ´ÓÅäÖÃÎÄ¼ş»ñµÃfileinfoºÍdstfilename
     memset(dstfilename, 0x00, sizeof(dstfilename));
     if (OK != get_update_info_24bytes(fileinfo, dstfilename))
     {
-        printf("ä»é…ç½®æ–‡ä»¶è·å¾—ä¿¡æ¯å¤±è´¥!é‡‡ç”¨é»˜è®¤æ–‡ä»¶å:%s\n", UPDT_FILE_APP);
+        printf("´ÓÅäÖÃÎÄ¼ş»ñµÃĞÅÏ¢Ê§°Ü!²ÉÓÃÄ¬ÈÏÎÄ¼şÃû:%s\n", UPDT_FILE_APP);
         strncpy(dstfilename, UPDT_FILE_APP, sizeof(dstfilename));
         memset(fileinfo, 0x00, sizeof(fileinfo));
     }
@@ -298,7 +297,7 @@ int create_updt_file(void)
     fpsrc = fopen(BIN_FILE, "rb");
     if (fpsrc == NULL)
     {
-        printf("æ‰¾ä¸åˆ°rtos.bin\n");
+        printf("ÕÒ²»µ½rtos.bin\n");
         goto __return_err;
     }
 
@@ -310,11 +309,11 @@ int create_updt_file(void)
     fpdst = fopen(dstfilename, "w+b");
     if (fpdst == NULL)
     {
-        printf("åˆ›å»ºæ–‡ä»¶å¤±è´¥!\n");
+        printf("´´½¨ÎÄ¼şÊ§°Ü!\n");
         goto __return_err;
     }
     fseek(fpdst, sizeof(update_cmd_t), SEEK_SET);
-    /* md5æ ¡éªŒ */
+    /* md5Ğ£Ñé */
     MD5Init(&ctx);
     write_size = 0;
     while (write_size < file_size)
@@ -323,7 +322,7 @@ int create_updt_file(void)
         MD5Update(&ctx, (char*)buf, len);
         if (len != fwrite(buf, 1, len, fpdst))
         {
-           printf("å†™æ–‡ä»¶å‡ºé”™!\n");
+           printf("Ğ´ÎÄ¼ş³ö´í!\n");
            write_size = -1;
            break;
         }
@@ -333,10 +332,10 @@ int create_updt_file(void)
     {
         goto __return_err;
     }
-    printf("è¾“å…¥æ–‡ä»¶å¤§å°: %d bytes, %fK\n", write_size, write_size / 1024.0f);
-    pfinfo->file_type = 0;  //åº”ç”¨ç¨‹åº
+    printf("ÊäÈëÎÄ¼ş´óĞ¡: %d ×Ö½Ú\n", write_size);
+    pfinfo->file_type = 0;  //Ó¦ÓÃ³ÌĞò
     memcpy(pfinfo->file_name, fileinfo, sizeof(pfinfo->file_name));
-    pfinfo->dest_addr = 0;  //ç›®æ ‡åœ°å€0
+    pfinfo->dest_addr = 0;  //Ä¿±êµØÖ·0
     pfinfo->zip_len = write_size;
     pfinfo->raw_len = write_size;
 
@@ -353,11 +352,11 @@ int create_updt_file(void)
     fseek(fpdst, 0, SEEK_SET);
     if (sizeof(update_cmd_t) != fwrite((void*)&header, 1, sizeof(update_cmd_t), fpdst))
     {
-        printf("å†™æ–‡ä»¶å‡ºé”™!\n");
+        printf("Ğ´ÎÄ¼ş³ö´í!\n");
         goto __return_err;
     }
 
-    //å°†æ–‡ä»¶1kå¯¹é½
+    //½«ÎÄ¼ş1k¶ÔÆë
     fseek(fpdst, 0, SEEK_END);
     file_size = ftell(fpdst);
     write_size = (file_size % 1024) ? (1024 - (file_size % 1024)) : 0;
@@ -366,13 +365,11 @@ int create_updt_file(void)
         memset(buf, 0xff, sizeof(buf));
         if (write_size != fwrite(buf, 1, write_size, fpdst))
         {
-            printf("å¯¹é½æ–‡ä»¶å‡ºé”™!\n");
+            printf("¶ÔÆëÎÄ¼ş³ö´í!\n");
             goto __return_err;
         }
     }
-    printf("åˆ›å»º Uç›˜å‡çº§æ–‡ä»¶:%s, å¯¹é½åˆ°%då­—èŠ‚\n", dstfilename, file_size + write_size);
-
-    printf("æ‰§è¡ŒæˆåŠŸ!\n");
+    printf("´´½¨ UÅÌÉı¼¶ÎÄ¼ş:%s, ¶ÔÆëµ½ %d ×Ö½Ú\n", dstfilename, file_size + write_size);
 
     if (fpdst != NULL)fclose(fpdst);
     if (fpsrc != NULL)fclose(fpsrc);
@@ -386,13 +383,13 @@ __return_err:
 
 /**
  ******************************************************************************
- * @brief      ç”Ÿæˆåˆæˆæ–‡ä»¶
- * @retval     0ï¼šæˆåŠŸ
+ * @brief      Éú³ÉºÏ³ÉÎÄ¼ş
+ * @retval     0£º³É¹¦
  ******************************************************************************
  */
 int create_joint_file(void)
 {
-    usb_update_ini_t fji;
+    cmd_joint_ini_t fji;
     char buf[BUF_SIZE];
     FILE* fdest = NULL;
     FILE* fcur = NULL;
@@ -401,7 +398,7 @@ int create_joint_file(void)
     int len = 0;
     int i;
 
-    /* 0. åˆå§‹åŒ–å‚æ•° */
+    /* 0. ³õÊ¼»¯²ÎÊı */
     if (0 != ini_get_info(&fji))
     {
         printf("ini get info err!\n");
@@ -409,13 +406,13 @@ int create_joint_file(void)
     }
     //todo: log
 
-    /* 1. æ ¡éªŒæ–‡ä»¶é•¿åº¦ */
+    /* 1. Ğ£ÑéÎÄ¼ş³¤¶È */
     for (i = 0; i < fji.files; i++)
     {
         fcur = fopen(fji.file[i].filename, "rb");
         if (fcur == NULL)
         {
-            printf("%sä¸å­˜åœ¨!\n", fji.file[i].filename);
+            printf("%s²»´æÔÚ!\n", fji.file[i].filename);
             goto __return_err;
         }
         fseek(fcur, 0, SEEK_END);
@@ -430,21 +427,21 @@ int create_joint_file(void)
         fcur = NULL;
     }
 
-    /* 2. åˆ›å»ºç›®æ ‡æ–‡ä»¶ */
+    /* 2. ´´½¨Ä¿±êÎÄ¼ş */
     fdest = fopen(fji.outfile, "w+b");
     if (fdest == NULL)
     {
-        printf("åˆ›å»ºæ–‡ä»¶%så¤±è´¥!\n", fji.outfile);
+        printf("´´½¨ÎÄ¼ş%sÊ§°Ü!\n", fji.outfile);
         goto __return_err;
     }
 
-    /* 3. å†™å…¥æ•°æ® */
+    /* 3. Ğ´ÈëÊı¾İ */
     for (i = 0; i < fji.files; i++)
     {
         fcur = fopen(fji.file[i].filename, "rb");
         if (fcur == NULL)
         {
-            printf("%sä¸å­˜åœ¨!\n", fji.file[i].filename);
+            printf("%s²»´æÔÚ!\n", fji.file[i].filename);
             goto __return_err;
         }
         fseek(fcur, 0, SEEK_END);
@@ -456,14 +453,14 @@ int create_joint_file(void)
             len = fread(buf, 1, BUF_SIZE, fcur);
             if ((len <= 0) || (len != fwrite(buf, 1, len, fdest)))
             {
-               printf("å†™æ–‡ä»¶å‡ºé”™[L%d]!\n", __LINE__);
+               printf("Ğ´ÎÄ¼ş³ö´í[L%d]!\n", __LINE__);
                goto __return_err;
             }
             write_size += len;
         }
         (void)fclose(fcur);
         fcur = NULL;
-        //è¡¥ç©ºç¼ºç©ºé—´
+        //²¹¿ÕÈ±¿Õ¼ä
         memset(buf, fji.blank, sizeof(buf));
         write_size = fji.file[i].filemaxsize - file_size;
         while (write_size > 0)
@@ -471,7 +468,7 @@ int create_joint_file(void)
             len = (write_size > BUF_SIZE) ? BUF_SIZE : write_size;
             if (len != fwrite(buf, 1, len, fdest))
             {
-               printf("å†™æ–‡ä»¶å‡ºé”™[L%d]!\n", __LINE__);
+               printf("Ğ´ÎÄ¼ş³ö´í[L%d]!\n", __LINE__);
                goto __return_err;
             }
             write_size -= len;
@@ -493,15 +490,29 @@ int main(int argc, char**argv)
     int ret = 0;
     printf("FileCmdJoint v%s\n", VERSION);
 
-    printf("\n\n1.file modify\n");
-    if (modify_bin_file() != 0)printf("modify rtos.bin failed!\n");
+    printf("\n1.file modify\n");
+    if (modify_bin_file() != OK)
+    {
+        printf("failed!\n");
+    }
+    else printf("ok\n");
 
-    printf("\n\n2.fileCmd\n");
-	if (create_updt_file() != 0)ret |= 1;
+    printf("\n2.fileCmd\n");
+	if (create_updt_file() != 0)
+	{
+	    ret |= 1;
+	    printf("failed!\n");
+	}
+    else printf("ok\n");
 
-	printf("\n\n3.FileJoint\n");
-	if (create_joint_file() != 0)ret |= 2;
+	printf("\n3.FileJoint\n");
+	if (create_joint_file() != 0)
+    {
+	    ret |= 2;
+	    printf("failed!\n");
+    }
+    else printf("ok\n");
 
-    printf("Done:%d\n", ret);
+    printf("FileCmdJoint Done:%d\n", ret);
 	return ret;
 }

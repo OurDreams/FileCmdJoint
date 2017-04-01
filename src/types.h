@@ -1,49 +1,65 @@
 /**
  ******************************************************************************
  * @file       types.h
- * @brief      ç³»ç»Ÿç±»å‹å®šä¹‰
- * @details    æœ¬æ–‡ä»¶å®šä¹‰ç³»ç»Ÿä¸­ç”¨åˆ°çš„æ‰€æœ‰ä½¿ç”¨çš„åŸºæœ¬ç±»å‹
- * @copyright  Copyright(C), 2008-2012,Sanxing Electric Co.,Ltd.
- *
+ * @brief      ÏµÍ³ÀàĞÍ¶¨Òå
+ * @details    ±¾ÎÄ¼ş¶¨ÒåÏµÍ³ÖĞÓÃµ½µÄËùÓĞÊ¹ÓÃµÄ»ù±¾ÀàĞÍ
+ * @copyright Copyright(C), 2015-2020,Sanxing Medical & Electric Co.,Ltd.
  ******************************************************************************
  */
 
-#ifndef _MTYPES_H_
-#define _MTYPES_H_
+#ifndef _MYTYPES_H_
+#define _MYTYPES_H_
 
+/*-----------------------------------------------------------------------------
+ Section: Includes
+ ----------------------------------------------------------------------------*/
+#include <stdint.h>
 
-
-/*------------------------------------------------------------------------------
-Section: Includes
-------------------------------------------------------------------------------*/
-//#include <windef.h>
-/*------------------------------------------------------------------------------
-Section: Macro Definitions
-------------------------------------------------------------------------------*/
-#ifndef OK
+/*-----------------------------------------------------------------------------
+ Section: Macro Definitions
+ ----------------------------------------------------------------------------*/
+#ifdef OK
+#undef OK
+#endif
 #define OK      0
+
+#ifdef ERROR
+#undef ERROR
 #endif
-#ifndef ERROR
-#define ERROR       (-1)
+#define ERROR   (-1)
+
+#ifdef TRUE
+#undef TRUE
 #endif
+#define TRUE      1
+
+#ifdef FALSE
+#undef FALSE
+#endif
+#define FALSE     0
+
 #ifndef BOOL
-#define BOOL  int8
+#define BOOL    int8
 #endif
+
 #ifndef bool
-#define bool  uint8
+#define bool    uint8
 #endif
+
 #ifndef IMPORT
-#define IMPORT extern
+#define IMPORT  extern
 #endif
+
 #ifndef LOCAL
-#define LOCAL static
+#define LOCAL   static
 #endif
+
 #ifndef FAST
-#define FAST  register
+#define FAST    register
 #endif
 
 #ifndef NULL
-#define NULL 0
+#define NULL    0
 #endif
 
 /**
@@ -51,81 +67,52 @@ Section: Macro Definitions
  *
  * define access restrictions to peripheral registers
  */
+#define __I     volatile const  /*!< defines 'read only' permissions      */
+#define __O     volatile        /*!< defines 'write only' permissions     */
+#define __IO    volatile        /*!< defines 'read / write' permissions   */
 
-#define     __I     volatile const            /*!< defines 'read only' permissions      */
-#define     __O     volatile                  /*!< defines 'write only' permissions     */
-#define     __IO    volatile                  /*!< defines 'read / write' permissions   */
-
-
-/*------------------------------------------------------------------------------
-Section: Type Definitions
-------------------------------------------------------------------------------*/
-typedef char                    char_t;
-typedef signed char             int8_t;
-typedef signed short            int16_t;
-typedef signed int              int32_t;
-typedef signed long long        int64_t;
-typedef unsigned char           uint8_t;
-typedef unsigned short          uint16_t;
-typedef unsigned int            uint32_t;
-typedef unsigned long long      uint64_t;
-typedef float                   float32_t;
-typedef double                  float64_t;
-typedef long double             float128_t;
-typedef enum
-{
-   E_FALSE  = 0,
-   E_TRUE   = 1
-}bool_e;
-#ifndef FALSE
-#define FALSE 0
+/*-----------------------------------------------------------------------------
+ Section: Type Definitions
+ ----------------------------------------------------------------------------*/
+typedef char                char_t;
+#if 0 //stdint
+typedef signed char         int8_t;
+typedef signed short        int16_t;
+typedef signed int          int32_t;
+typedef signed long long    int64_t;
+typedef unsigned char       uint8_t;
+typedef unsigned short      uint16_t;
+typedef unsigned int        uint32_t;
+typedef unsigned long long  uint64_t;
 #endif
-#ifndef TRUE
-#define TRUE 1
-#endif
+typedef float               float32_t;
+typedef double              float64_t;
+typedef long double         float128_t;
+
 typedef int                 status_t;
+typedef int                 STATUS;
 
-typedef signed char         int8;
-typedef short int           int16;
-typedef int                 int32;
-typedef long long           int64;
+typedef int8_t              int8;
+typedef int16_t             int16;
+typedef int32_t             int32;
+typedef int64_t             int64;
 
-typedef unsigned char       uint8;
-typedef unsigned short int  uint16;
-typedef unsigned  int       uint32;
-typedef unsigned long long  uint64;
+typedef uint8_t             uint8;
+typedef uint16_t            uint16;
+typedef uint32_t            uint32;
+typedef uint64_t            uint64;
 
-typedef unsigned char       byte;
-typedef unsigned char       bits;
-typedef unsigned char       uchar;
+typedef uint8_t             byte;
+typedef uint8_t             bits;
+typedef uint8_t             uchar;
 typedef float               float32;
 
+typedef uint32              size_t;
+//typedef __SIZE_TYPE__     size_t;
 
-typedef uint32     size_t;
+typedef unsigned char       tBoolean;
 
-#ifndef boolean
-#define boolean bool_e
-#endif
-#define false 0
-#define true 1
-#if 0
-typedef unsigned char tBoolean;
-
-typedef enum  Boolean
-{
-   false = 0,
-   true  = 1
-}boolean;
-#endif
 typedef signed long time_t;
-
-#ifdef __WIN32__
-
-#define localtime_r( _clock, _result ) \
-        ( *(_result) = *localtime( (_clock) ), \
-          (_result) )
-#define strlcpy strncpy
-#endif
 
 #define WAIT_FOREVER  ((uint32)0)
 
@@ -134,61 +121,59 @@ typedef signed long time_t;
 #define FAR
 
 
-//#define max(x, y)   (((x) < (y)) ? (y) : (x))
-//#define min(x, y)   (((x) < (y)) ? (x) : (y))
-//#define isascii(c)  ((unsigned) (c) <= 0177)
-//#define toascii(c)  ((c) & 0177)
-//#define BITS(x,y) (((x)>>(y))&0x01u)   /* åˆ¤æ–­æŸä½æ˜¯å¦ä¸º1 */
-//#define SETBITS(x,y,n) (x) = (n) ? ((x)|(1 << (y))) : ((x) &(~(1 << (y))));
-
-
 #ifdef __cplusplus
-typedef void        (*OSFUNCPTR) (void *);     /* ptr to function returning int */
-typedef int         (*FUNCPTR) (...);     /* ptr to function returning int */
-typedef void        (*VOIDFUNCPTR) (...); /* ptr to function returning void */
-typedef double      (*DBLFUNCPTR) (...);  /* ptr to function returning double*/
-typedef float       (*FLTFUNCPTR) (...);  /* ptr to function returning float */
-typedef void (*VOIDFUNCPTRBOOL)(boolean);
+typedef void    (*OSFUNCPTR) (void *);  /* ptr to function returning int */
+typedef int     (*FUNCPTR) (...);       /* ptr to function returning int */
+typedef void    (*VOIDFUNCPTR) (...);   /* ptr to function returning void */
+typedef double  (*DBLFUNCPTR) (...);    /* ptr to function returning double*/
+typedef float   (*FLTFUNCPTR) (...);    /* ptr to function returning float */
+typedef void    (*VOIDFUNCPTRBOOL)(boolean);
 
 #else
-typedef void        (*OSFUNCPTR) (void *);     /* ptr to function returning int */
-typedef int         (*FUNCPTR) ();     /* ptr to function returning int */
-typedef void        (*VOIDFUNCPTR) (); /* ptr to function returning void */
-typedef double      (*DBLFUNCPTR) ();  /* ptr to function returning double*/
-typedef float       (*FLTFUNCPTR) ();  /* ptr to function returning float */
-typedef void (*VOIDFUNCPTRBOOL)(bool_e b);
-typedef void (*pkey_event_fuc)(uint8);
+typedef void    (*OSFUNCPTR) (void *);  /* ptr to function returning int */
+typedef int     (*FUNCPTR) ();          /* ptr to function returning int */
+typedef void    (*VOIDFUNCPTR) ();      /* ptr to function returning void */
+typedef double  (*DBLFUNCPTR) ();       /* ptr to function returning double*/
+typedef float   (*FLTFUNCPTR) ();       /* ptr to function returning float */
+
 #endif          /* _cplusplus */
 
-typedef union {
-    unsigned long longValue;
-    unsigned char array[4];
-    struct{unsigned short high,low;} shortValue;
-    struct{unsigned char highest,higher,middle,low;}charValue;
-}U_UINT32;
-
-
+#ifdef __CC_ARM                         /* ARM Compiler */
+#define WEAK __weak
+#elif defined (__IAR_SYSTEMS_ICC__)     /* for IAR Compiler */
+#define WEAK __weak
+#elif defined (__GNUC__)                /* GNU GCC Compiler */
+#define WEAK __attribute__ ((weak))
+#endif
 
 typedef union
 {
-     unsigned long LongValue;
-     unsigned char Array[4];
-     struct{unsigned short High,Low;} IntValue;
-     struct{unsigned char Highest,Higher,Middle,Low;}CharValue;
-}Long_Char;
+    unsigned long longValue;
+    unsigned char array[4];
+    struct
+    {
+        unsigned short high, low;
+    } shortValue;
+    struct
+    {
+        unsigned char highest, higher, middle, low;
+    } charValue;
+} U_UINT32;
 
-typedef int     STATUS;
+typedef union
+{
+    unsigned long LongValue;
+    unsigned char Array[4];
+    struct
+    {
+        unsigned short High, Low;
+    } IntValue;
+    struct
+    {
+        unsigned char Highest, Higher, Middle, Low;
+    } CharValue;
+} Long_Char;
 
-/*------------------------------------------------------------------------------
-Section: Globals
-------------------------------------------------------------------------------*/
-/* None */
+#endif /* _MYTYPES_H_ */
 
-/*------------------------------------------------------------------------------
-Section: Function Prototypes
-------------------------------------------------------------------------------*/
-
-#endif /*_MTYPES_H_ */
-
-/*-------------------------------End of types.h-------------------------------*/
-
+/*-----------------------------End of types.h--------------------------------*/
