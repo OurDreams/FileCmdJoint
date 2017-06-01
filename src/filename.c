@@ -25,20 +25,20 @@
 
 typedef struct
 {
-    uint32 magic;       /**< é­”æœ¯å­—:0xa1b2c3d4è¡¨ç¤ºuç›˜å‡çº§ */
-    char_t show_ver[4]; /**< æ˜¾ç¤ºç‰ˆæœ¬ */
-    char_t bsp_ver[4];  /**< bspç‰ˆæœ¬ */
+    uint32 magic;       /**< Ä§Êõ×Ö:0xa1b2c3d4±íÊ¾uÅÌÉı¼¶ */
+    char_t show_ver[4]; /**< ÏÔÊ¾°æ±¾ */
+    char_t bsp_ver[4];  /**< bsp°æ±¾ */
     union
     {
         struct
         {
-            char_t ker_ver[5];  /**< å†…æ ¸ç‰ˆæœ¬ï¼ˆASCIIç ï¼Œ5å­—èŠ‚ï¼‰ */
-            uint16 meter_ver;   /**< è®¡é‡åº“ç‰ˆæœ¬ï¼ˆ2å­—èŠ‚ï¼‰ */
-            char_t oem[4];      /**< OEMä¿¡æ¯ï¼ˆ4å­—èŠ‚ï¼Œé¦–å­—æ¯è¡¨ç¤º,å¦‚ä¸Šæµ·è”èƒ½SHLNï¼‰ */
+            char_t ker_ver[5];  /**< ÄÚºË°æ±¾£¨ASCIIÂë£¬5×Ö½Ú£© */
+            uint16 meter_ver;   /**< ¼ÆÁ¿¿â°æ±¾£¨2×Ö½Ú£© */
+            char_t oem[4];      /**< OEMĞÅÏ¢£¨4×Ö½Ú£¬Ê××ÖÄ¸±íÊ¾,ÈçÉÏº£ÁªÄÜSHLN£© */
         };
-        char_t t_info[11];      /**< ç»ˆç«¯ä¿¡æ¯ç  */
+        char_t t_info[11];      /**< ÖÕ¶ËĞÅÏ¢Âë */
     };
-    uint8 cs;           /**< å¯¹ä¸Šè¿°æ•°æ®è¿›è¡Œç´¯åŠ æ±‚å’Œ */
+    uint8 cs;           /**< ¶ÔÉÏÊöÊı¾İ½øĞĞÀÛ¼ÓÇóºÍ */
 } my_usb_update_info_t;
 #pragma pack(pop)
 
@@ -149,12 +149,12 @@ get_value_by_define(FILE *pfd, const char *pdefine)
 
 /**
  ******************************************************************************
- * @brief   å°è¯•é…ç½®æ–‡ä»¶è·å¾—æ–‡ä»¶å
+ * @brief   ³¢ÊÔÅäÖÃÎÄ¼ş»ñµÃÎÄ¼şÃû
  * @param[in]  *pcfgname : rtucfg.h
- * @param[out] *pfilename: æ–‡ä»¶å
+ * @param[out] *pfilename: ÎÄ¼şÃû
  *
- * @retval  OK    : æˆåŠŸ
- * @retval  ERROR : å¤±è´¥
+ * @retval  OK    : ³É¹¦
+ * @retval  ERROR : Ê§°Ü
  ******************************************************************************
  */
 static status_t
@@ -162,10 +162,10 @@ try_get_filename(const char *pcfgname,
         char *pfilename)
 {
     status_t ret = ERROR;
-    char gn = 'g';      //å›½ç½‘gå—ç½‘n
-    int product_type;   //äº§å“ç±»å‹
-    int prd_area;       //ç‰ˆæœ¬åœ°åŒºç±»å‹
-    int hard_ver;       //ç¡¬ä»¶ç‰ˆæœ¬
+    char gn = 'g';      //¹úÍøgÄÏÍøn
+    int product_type;   //²úÆ·ÀàĞÍ
+    int prd_area;       //°æ±¾µØÇøÀàĞÍ
+    int hard_ver;       //Ó²¼ş°æ±¾
     FILE *pfd = fopen(pcfgname, "r");
 
     do
@@ -176,13 +176,13 @@ try_get_filename(const char *pcfgname,
             break;
         }
 
-        //å›½ç½‘gå—ç½‘n
-        if (TRUE == have_string(pfd, "å—ç½‘"))
+        //¹úÍøgÄÏÍøn
+        if (TRUE == have_string(pfd, "ÄÏÍø"))
         {
             gn = 'n';
         }
 
-        //äº§å“ç±»å‹
+        //²úÆ·ÀàĞÍ
         product_type = get_value_by_define(pfd, PRODUCT_TYPE_STRING);
         printf("product_type:%d\n", product_type);
         if ((product_type < 0) || (product_type > 9))
@@ -190,7 +190,7 @@ try_get_filename(const char *pcfgname,
             break;
         }
 
-        //ç‰ˆæœ¬åœ°åŒºç±»å‹
+        //°æ±¾µØÇøÀàĞÍ
         prd_area = get_value_by_define(pfd, PRD_AREA_STRING);
         printf("prd_area:%d\n", prd_area);
         if ((prd_area < 0) || (prd_area > 99))
@@ -198,7 +198,7 @@ try_get_filename(const char *pcfgname,
             break;
         }
 
-        //todo: ç¡¬ä»¶ç‰ˆæœ¬
+        //todo: Ó²¼ş°æ±¾
         hard_ver = 0;
 
         sprintf(pfilename, "up%c%d%02d%02d.sp4", gn,
@@ -215,11 +215,11 @@ try_get_filename(const char *pcfgname,
 
 /**
  ******************************************************************************
- * @brief   æ‰‹åŠ¨è¾“å…¥
- * @param[out] *pfilename: æ–‡ä»¶å
+ * @brief   ÊÖ¶¯ÊäÈë
+ * @param[out] *pfilename: ÎÄ¼şÃû
  *
- * @retval  OK    : æˆåŠŸ
- * @retval  ERROR : å¤±è´¥
+ * @retval  OK    : ³É¹¦
+ * @retval  ERROR : Ê§°Ü
  ******************************************************************************
  */
 status_t
@@ -230,8 +230,8 @@ manual_filename(char *pfilename)
 
 /**
  ******************************************************************************
- * @brief   è·å–å‡çº§æ–‡ä»¶å
- * @retval  å‡çº§æ–‡ä»¶å
+ * @brief   »ñÈ¡Éı¼¶ÎÄ¼şÃû
+ * @retval  Éı¼¶ÎÄ¼şÃû
  ******************************************************************************
  */
 const char *
@@ -241,7 +241,7 @@ get_update_filename(void)
 
     if (OK != try_get_filename(RTUCFG_FILENAME, the_filename))
     {
-        //todo: æ‰‹å·¥è¾“å…¥
+        //todo: ÊÖ¹¤ÊäÈë
         (void)manual_filename(the_filename);
     }
 
@@ -264,11 +264,11 @@ get_cs(const uint8 * pfbuf, uint16 len)
 
 /**
  ******************************************************************************
- * @brief   è·å–å‡çº§ä¿¡æ¯24å­—èŠ‚
- * @param[out] *pinfo: å‡çº§ä¿¡æ¯
+ * @brief   »ñÈ¡Éı¼¶ĞÅÏ¢24×Ö½Ú
+ * @param[out] *pinfo: Éı¼¶ĞÅÏ¢
  *
- * @retval  OK    : æˆåŠŸ
- * @retval  ERROR : å¤±è´¥
+ * @retval  OK    : ³É¹¦
+ * @retval  ERROR : Ê§°Ü
  ******************************************************************************
  */
 status_t
@@ -283,10 +283,10 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
         goto __return_err;
     }
 
-    //æ£€æŸ¥å‚æ•°
+    //¼ì²é²ÎÊı
     if ((strlen(uui.show_ver) != 5) || (uui.show_ver[2] != '.'))
     {
-        printf("è¾“å…¥çš„æ˜¾ç¤ºç‰ˆæœ¬(%s)ä¸æ­£ç¡®!å‚è€ƒ:CV.03\n", uui.show_ver);
+        printf("ÊäÈëµÄÏÔÊ¾°æ±¾(%s)²»ÕıÈ·!²Î¿¼:CV.03\n", uui.show_ver);
         goto __return_err;
     }
     else
@@ -300,7 +300,7 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
     if ((strlen(uui.bsp_ver) != 7) || (uui.bsp_ver[1] != '.')
             || (uui.bsp_ver[3] != '.') || (uui.bsp_ver[5] != '.'))
     {
-        printf("è¾“å…¥çš„ç¡¬ä»¶ç‰ˆæœ¬(%s)ä¸æ­£ç¡®!å‚è€ƒ:3.4.0.3\n", uui.bsp_ver);
+        printf("ÊäÈëµÄÓ²¼ş°æ±¾(%s)²»ÕıÈ·!²Î¿¼:3.4.0.3\n", uui.bsp_ver);
         goto __return_err;
     }
     else
@@ -314,7 +314,7 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
     if ((strlen(uui.ker_ver) != 5) || (uui.ker_ver[1] != '.')
             || (uui.ker_ver[3] != '.'))
     {
-        printf("è¾“å…¥çš„å†…æ ¸ç‰ˆæœ¬(%s)ä¸æ­£ç¡®!å‚è€ƒ:1.0.9\n", uui.ker_ver);
+        printf("ÊäÈëµÄÄÚºË°æ±¾(%s)²»ÕıÈ·!²Î¿¼:1.0.9\n", uui.ker_ver);
         goto __return_err;
     }
     else
@@ -328,7 +328,7 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
 
     if ((uui.meter_ver > 0xffff) || (uui.meter_ver < 0))
     {
-        printf("è¾“å…¥çš„è®¡é‡ç‰ˆæœ¬(%x)ä¸æ­£ç¡®!å‚è€ƒ:0x010d,å¯é€šè¿‡shell->vmå‘½ä»¤æŸ¥çœ‹\n",
+        printf("ÊäÈëµÄ¼ÆÁ¿°æ±¾(%x)²»ÕıÈ·!²Î¿¼:0x010d,¿ÉÍ¨¹ıshell->vmÃüÁî²é¿´\n",
                 uui.meter_ver);
         goto __return_err;
     }
@@ -339,7 +339,7 @@ get_update_info_24bytes(char *pinfo, char *pfilename)
 
     if (strlen(uui.oem)!=0 && (strlen(uui.oem) != 4))
     {
-        printf("è¾“å…¥çš„OEMä¿¡æ¯(%s)ä¸æ­£ç¡®!ï¼ˆ4å­—èŠ‚ï¼Œé¦–å­—æ¯è¡¨ç¤º,å¦‚ä¸Šæµ·è”èƒ½SHLN,å¯ä¸å¡«ï¼‰\n",
+        printf("ÊäÈëµÄOEMĞÅÏ¢(%s)²»ÕıÈ·!£¨4×Ö½Ú£¬Ê××ÖÄ¸±íÊ¾,ÈçÉÏº£ÁªÄÜSHLN,¿É²»Ìî£©\n",
                 uui.oem);
         goto __return_err;
     }
