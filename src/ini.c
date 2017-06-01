@@ -21,7 +21,7 @@
  ----------------------------------------------------------------------------*/
 /**
  ******************************************************************************
- * @brief   ´´½¨Ä¬ÈÏÅäÖÃÎÄ¼ş
+ * @brief   åˆ›å»ºé»˜è®¤é…ç½®æ–‡ä»¶
  * @return  None
  ******************************************************************************
  */
@@ -33,34 +33,34 @@ create_example_ini_file(void)
     ini = fopen(DEFAULT_INI_FILE, "w");
     fprintf(ini,
             "[cfg]\n"
-            "#######UÅÌÉı¼¶ÅäÖÃ#######\n"
-            "#ÏÔÊ¾°æ±¾(5×Ö·û£¬ÀıÈçCV.03)\n"
+            "#######Uç›˜å‡çº§é…ç½®#######\n"
+            "#æ˜¾ç¤ºç‰ˆæœ¬(5å­—ç¬¦ï¼Œä¾‹å¦‚CV.03)\n"
             "ShowVer     = CV.03\n"
-            "#BSPÓ²¼ş°æ±¾(7×Ö·û£¬ÀıÈç3.4.0.3)\n"
+            "#BSPç¡¬ä»¶ç‰ˆæœ¬(7å­—ç¬¦ï¼Œä¾‹å¦‚3.4.0.3)\n"
             "BspVer     = 3.4.0.3\n"
-            "#ÄÚºË°æ±¾£¨ASCIIÂë£¬5×Ö·û£¬ÀıÈç1.0.9£©\n"
+            "#å†…æ ¸ç‰ˆæœ¬ï¼ˆASCIIç ï¼Œ5å­—ç¬¦ï¼Œä¾‹å¦‚1.0.9ï¼‰\n"
             "KernelVer  = 1.0.9\n"
-            "#¼ÆÁ¿°æ±¾£¨2×Ö½Ú,Ê®Áù½øÖÆ£©,Í¨¹ıshell->vmÃüÁî²é¿´\n"
+            "#è®¡é‡ç‰ˆæœ¬ï¼ˆ2å­—èŠ‚,åå…­è¿›åˆ¶ï¼‰,é€šè¿‡shell->vmå‘½ä»¤æŸ¥çœ‹\n"
             "MeterVer  = 0x010d\n"
-            "#OEMĞÅÏ¢£¨4×Ö½Ú£¬Ê××ÖÄ¸±íÊ¾,ÈçÉÏº£ÁªÄÜSHLN£©\n"
+            "#OEMä¿¡æ¯ï¼ˆ4å­—èŠ‚ï¼Œé¦–å­—æ¯è¡¨ç¤º,å¦‚ä¸Šæµ·è”èƒ½SHLNï¼‰\n"
             "OemVer  = \n"
             "\n\n"
 
-            "#######ÎÄ¼şÆ´½ÓÅäÖÃ#######\n"
-            "#ÎÄ¼ş×ÜÊıÁ¿(Ò»°ãÌî2,×î´ó5)\n"
+            "#######æ–‡ä»¶æ‹¼æ¥é…ç½®#######\n"
+            "#æ–‡ä»¶æ€»æ•°é‡(ä¸€èˆ¬å¡«2,æœ€å¤§5)\n"
             "Files = 2\n"
-            "#¿Õ°×Ìî³äÊı×Ö(0~255,´óÓÚ255Ö±½ÓÎª255)\n"
+            "#ç©ºç™½å¡«å……æ•°å­—(0~255,å¤§äº255ç›´æ¥ä¸º255)\n"
             "Blank = 255\n"
-            "#Êä³öÎÄ¼şÃû\n"
+            "#è¾“å‡ºæ–‡ä»¶å\n"
             "OutFile = ./FLASH.bin\n"
             "\n"
-            "#ÎÄ¼ş1\n"
+            "#æ–‡ä»¶1\n"
             "#0x800-->32K\n"
             "[f1]\n"
             "FileName    = ./boot/boot(FKGA23_4_0_3).bin\n"
             "FileMaxSize = 0x8000\n"
             "\n"
-            "#ÎÄ¼ş2\n"
+            "#æ–‡ä»¶2\n"
             "#0xf8000-->992K\n"
             "#0xb8000-->736K\n"
             "#0x7f800-->510K\n"
@@ -73,10 +73,10 @@ create_example_ini_file(void)
 
 /**
  ******************************************************************************
- * @brief   ´ÓÅäÖÃÎÄ¼şÖĞ»ñÈ¡ÎÄ¼şºÏ²¢ĞÅÏ¢
- * @param[out] *pinfo   : ·µ»Øinfo
+ * @brief   ä»é…ç½®æ–‡ä»¶ä¸­è·å–æ–‡ä»¶åˆå¹¶ä¿¡æ¯
+ * @param[out] *pinfo   : è¿”å›info
  *
- * @retval      0 ³É¹¦
+ * @retval      0 æˆåŠŸ
  ******************************************************************************
  */
 int
@@ -100,7 +100,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
     iniparser_dump(ini, NULL);//stderr
 
     /*************************fileCmd**********************/
-    //ÏÔÊ¾°æ±¾
+    //æ˜¾ç¤ºç‰ˆæœ¬
     pstr = iniparser_getstring(ini, "cfg:ShowVer", NULL);
     if (pstr == NULL)
     {
@@ -109,7 +109,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
     }
     strncpy(pinfo->show_ver, pstr, sizeof(pinfo->show_ver));
 
-    //BSPÓ²¼ş°æ±¾
+    //BSPç¡¬ä»¶ç‰ˆæœ¬
     pstr = iniparser_getstring(ini, "cfg:BspVer", NULL);
     if (pstr == NULL)
     {
@@ -118,7 +118,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
     }
     strncpy(pinfo->bsp_ver, pstr, sizeof(pinfo->bsp_ver));
 
-    //ÄÚºË°æ±¾
+    //å†…æ ¸ç‰ˆæœ¬
     pstr = iniparser_getstring(ini, "cfg:KernelVer", NULL);
     if (pstr == NULL)
     {
@@ -127,7 +127,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
     }
     strncpy(pinfo->ker_ver, pstr, sizeof(pinfo->ker_ver));
 
-    //¼ÆÁ¿°æ±¾
+    //è®¡é‡ç‰ˆæœ¬
     pinfo->meter_ver = iniparser_getint(ini, "cfg:MeterVer", -1);
     if (pinfo->meter_ver == -1)
     {
@@ -135,7 +135,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
         return -1;
     }
 
-    //OEMĞÅÏ¢
+    //OEMä¿¡æ¯
     pstr = iniparser_getstring(ini, "cfg:OemVer", NULL);
     if (pstr == NULL)
     {
@@ -171,7 +171,7 @@ ini_get_info(cmd_joint_ini_t *pinfo)
         strncpy(pinfo->outfile, pstr, sizeof(pinfo->outfile));
     }
 
-    /* É¨ÃèËùÒÔÎÄ¼ş */
+    /* æ‰«ææ‰€ä»¥æ–‡ä»¶ */
     char ftmp[32];
     int i = 0;
     for (i = 0; i < pinfo->files; i++)

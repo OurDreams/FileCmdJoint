@@ -1,7 +1,7 @@
 /**
  ******************************************************************************
  * @file       config.h
- * @brief      ≈‰÷√Œƒº˛
+ * @brief      ÈÖçÁΩÆÊñá‰ª∂
  * @details    This file including all API functions's declare of config.h.
  * @copyright
  *
@@ -13,17 +13,17 @@
 /*-----------------------------------------------------------------------------
  Section: Macro Definitions
  ----------------------------------------------------------------------------*/
-#define DEFAULT_INI_FILE        "./FileCmdJoint.ini"     /**< ƒ¨»œ≈‰÷√Œƒº˛ */
+#define DEFAULT_INI_FILE        "./FileCmdJoint.ini"     /**< ÈªòËÆ§ÈÖçÁΩÆÊñá‰ª∂ */
 
 
-#define DEFAULT_MAX_FILE        (5u)                /**< ◊Ó¥ÛŒƒº˛∫œ≤¢ ˝¡ø */
-#define DEFAULT_DEST_FILE       "./FLASH.bin"       /**< ∫œ≤¢∫ÛŒƒº˛ */
-#define DEFAULT_BOOT_SIZE       (32 * 1024)         /**< boot¥Û–° */
-#define DEFAULT_APP_SIZE        ((1024 - 32) * 1024)/**< app¥Û–° */
+#define DEFAULT_MAX_FILE        (5u)                /**< ÊúÄÂ§ßÊñá‰ª∂ÂêàÂπ∂Êï∞Èáè */
+#define DEFAULT_DEST_FILE       "./FLASH.bin"       /**< ÂêàÂπ∂ÂêéÊñá‰ª∂ */
+#define DEFAULT_BOOT_SIZE       (32 * 1024)         /**< bootÂ§ßÂ∞è */
+#define DEFAULT_APP_SIZE        ((1024 - 32) * 1024)/**< appÂ§ßÂ∞è */
 
 
-#define DEFAULT_LOG_ON          (1u)                /**< ƒ¨»œ¥Úø™»’÷æº«¬º */
-#define DEFAULT_LOG_FILE_NAME   "./FileCmdJoint.log"     /**< ƒ¨»œ»’÷æŒƒº˛ */
+#define DEFAULT_LOG_ON          (1u)                /**< ÈªòËÆ§ÊâìÂºÄÊó•ÂøóËÆ∞ÂΩï */
+#define DEFAULT_LOG_FILE_NAME   "./FileCmdJoint.log"     /**< ÈªòËÆ§Êó•ÂøóÊñá‰ª∂ */
 
 #endif /* CONFIG_H_ */
 /*-----------------------------End of config.h-------------------------------*/
